@@ -1,5 +1,5 @@
 # Book Reviewer - CRUD Web App
-This project is a simple book review website using...
+This project is a simple book review web app using...
 ## Table of Contents
 * [Usage](#usage)
 * [Technologies](#technologies)
