@@ -7,9 +7,10 @@ This project is a simple book review web app using...
 * [Config](#config)
 * [Risk Assessment](#risk_assessment)
 * [Links](#links)
+* ...
 
-## Usage
-What the software can be used for
+## Overview
+
 
 ## Technologies
 Project created with:
@@ -30,10 +31,13 @@ $
 Describe what the config variables do
 
 ## Risk Assessment
-
+A risk is an event that is uncertain that will cause an effect on an objective.
+To try to mitigate risks I will do a risk assessment.
+## Jira Backlog
+Link
 
 ## Links
-* Jira Backlog
+
 * Web app
 * Documentation
 * Issue tracker?
