@@ -5,6 +5,7 @@ This project is a simple book review web app using...
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Config](#config)
+* [Risk Assessment](#risk_assessment)
 * [Links](#links)
 
 ## Usage
@@ -28,7 +29,11 @@ $
 ## Config
 Describe what the config variables do
 
+## Risk Assessment
+
+
 ## Links
+* Jira Backlog
 * Web app
 * Documentation
 * Issue tracker?
