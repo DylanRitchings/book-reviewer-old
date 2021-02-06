@@ -30,9 +30,13 @@ $
 ## Config
 Describe what the config variables do
 
-## Risk Assessment
+## Risk Management
 A risk is an event that is uncertain that will cause an effect on an objective.
-To try to mitigate risks I will do a risk assessment.
+* Qualitative risk assessment where risks are split into severity and likelyhood.
+
+The risk assessment contains 3 steps, identification, analysis and prioritization
+Risk control contains another 3 steps, management planning, resolution, resultion monitoring.
+https://jaxenter.com/common-sense-software-engineering-part-iii-risk-analysis-121131.html
 ## Jira Backlog
 Link
 
