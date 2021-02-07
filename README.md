@@ -9,7 +9,7 @@
 * ...
 
 ## Overview
-The goal of this project was to create a simple CRUD (create, read, update, delete) web app. I have created a simple website that allows users to upload books and post reviews about them. The users can also edit or delete their reviews.
+The goal of this project was to create a simple CRUD (create, read, update, delete) web app. I have created a  website where users cab upload books and post reviews about them. The users can also edit or delete their reviews.
 
 ## Technologies
 Project created using:
