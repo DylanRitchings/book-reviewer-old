@@ -54,6 +54,8 @@ The risk assessment contains 3 steps, identification, analysis and prioritizatio
 Risk control contains another 3 steps, management planning, resolution, resultion monitoring.
 https://jaxenter.com/common-sense-software-engineering-part-iii-risk-analysis-121131.html
 
+A response to the risk is then formulate. The response will either remove the risk completely or reduce its serverity.
+
 ## Links
 
 * Web app
