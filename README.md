@@ -1,5 +1,4 @@
 # Book Reviewer - CRUD Web App
-This project is a simple book review web app using...
 ## Table of Contents
 * [Usage](#usage)
 * [Technologies](#technologies)
@@ -10,12 +9,19 @@ This project is a simple book review web app using...
 * ...
 
 ## Overview
-
+The goal of this project was to create a simple CRUD (create, read, update, delete) web app. I have created a simple website that allows users to upload books and post reviews about them. The users can also edit or delete their reviews.
 
 ## Technologies
-Project created with:
-* A
-* B
+Project created using:
+* Kanban Board: Jira
+* Database: GCP Managed SQL Server
+* Programming language: Java
+* Front-end: HTML, CSS and JavaScript
+* Unit Tests: JUnit and Mockito
+* Integration Tests: Selenium
+* Version Control: Git
+* CI Server: CircleCI
+* Cloud server: GCP virtual machine
 
 ## Setup
 ```
