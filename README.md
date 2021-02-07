@@ -23,6 +23,16 @@ Project created using:
 * CI Server: CircleCI
 * Cloud server: GCP virtual machine
 
+## Project Tracking
+Jira uses MOSCOW priority
+
+## Entity Relationship Diagram
+
+
+## CI Pipeline
+
+
+
 ## Setup
 ```
 $
@@ -43,8 +53,6 @@ A risk is an event that is uncertain that will cause an effect on an objective.
 The risk assessment contains 3 steps, identification, analysis and prioritization
 Risk control contains another 3 steps, management planning, resolution, resultion monitoring.
 https://jaxenter.com/common-sense-software-engineering-part-iii-risk-analysis-121131.html
-## Jira Backlog
-Link
 
 ## Links
 
