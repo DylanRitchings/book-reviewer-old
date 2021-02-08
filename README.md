@@ -49,7 +49,7 @@ Describe what the config variables do
 ## Risk Management
 A risk is an event that is uncertain that will cause an effect on an objective.
 * Qualitative risk assessment where risks are split into impact and likelyhood.
-* **Risk Category:** Each risk will be put into categories, **TODO** Decide which categories are more important
+* **Risk Category:** How the risk impacts the project **TODO** Decide which categories are more important
 * **Likelyhood:** How likely the risk is to occure
 * **Impact:**
 A response to the risk is then formulated. The response will either remove the risk completely or reduce its serverity.
