@@ -48,13 +48,11 @@ Describe what the config variables do
 
 ## Risk Management
 A risk is an event that is uncertain that will cause an effect on an objective.
-* Qualitative risk assessment where risks are split into severity and likelyhood.
-
-The risk assessment contains 3 steps, identification, analysis and prioritization
-Risk control contains another 3 steps, management planning, resolution, resultion monitoring.
-https://jaxenter.com/common-sense-software-engineering-part-iii-risk-analysis-121131.html
-
-A response to the risk is then formulate. The response will either remove the risk completely or reduce its serverity.
+* Qualitative risk assessment where risks are split into impact and likelyhood.
+* **Risk Category:** Each risk will be put into categories, **TODO** Decide which categories are more important
+* **Likelyhood:** How likely the risk is to occure
+* **Impact:**
+A response to the risk is then formulated. The response will either remove the risk completely or reduce its serverity.
 
 ## Links
 
