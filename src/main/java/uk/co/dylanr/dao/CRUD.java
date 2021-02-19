@@ -2,14 +2,17 @@ package uk.co.dylanr.dao;
 
 import java.util.List;
 
-public interface CRUD<T, C> {
+public interface CRUD<T> {
 
     List<T> readAll();
 
-    T create();
+    T readLatest();
 
-    T update();
+    T create(T t);
 
-    C delete();
+    T update(T t);
 
+    int delete(int id);
+
+    T get(int id);
 }

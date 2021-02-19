@@ -1,9 +1,13 @@
 package uk.co.dylanr.model;
+
+import java.util.List;
+
 public class Author {
-    int id;
-    String first_name;
-    String last_name;
-    String middle_names;
+    private Integer id;
+    private String first_name;
+    private String last_name;
+    private String middle_names;
+    private List<Book> books;
 
     public Author(int id, String first_name, String last_name, String middle_names) {
         this.id = id;
@@ -11,6 +15,8 @@ public class Author {
         this.last_name = last_name;
         this.middle_names = middle_names;
     }
+
+    public Author(){};
 
     public int getId() {
         return id;
@@ -42,5 +48,16 @@ public class Author {
 
     public void setMiddle_names(String middle_names) {
         this.middle_names = middle_names;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+    public Object[] getAll(){
+        return new Object[]{id, first_name, last_name, middle_names, books};
     }
 }

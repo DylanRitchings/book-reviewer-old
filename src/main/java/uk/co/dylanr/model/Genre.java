@@ -1,18 +1,22 @@
 package uk.co.dylanr.model;
 public class Genre {
-    int id;
-    String name;
+    private Integer id;
+    private String name;
 
     public Genre(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Genre() {
+
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -22,5 +26,9 @@ public class Genre {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Object[] getAll(){
+        return new Object[]{id, name};
     }
 }
