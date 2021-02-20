@@ -9,9 +9,10 @@ import uk.co.dylanr.model.Publisher;
 import uk.co.dylanr.utils.DBConnect;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class BookCRUD implements CRUD<Book> {
+public class BookDao implements CRUD<Book> {
     private static final Logger LOGGER = LogManager.getLogger();
 
     private Book extractBookFromResultSet(ResultSet rs) {
@@ -47,18 +48,15 @@ public class BookCRUD implements CRUD<Book> {
      * @return all books from books table
      *
      */
-    @Override
-    public List<Book> readAll() {
-        Connection conn = null;
+    public List<Book> readAll(Connection conn) {
         ResultSet rs = null;
-        List<Book> books = null;
+        List<Book> books = new ArrayList<Book>();
         try {
-            conn = DBConnect.getInstance().getConnection();
             Statement stmt = conn.createStatement();
-            String read = "SELECT * FROM Books;";
-            rs = stmt.executeQuery(read);
+            rs = stmt.executeQuery("SELECT * FROM Books;");
             while (rs.next()) {
                 Book book = extractBookFromResultSet(rs);
+
                 books.add(book);
             }
 
@@ -66,76 +64,65 @@ public class BookCRUD implements CRUD<Book> {
             LOGGER.error(e);
         } finally {
             DBConnect.close(rs);
-            DBConnect.close(conn);
         }
         return books;
     }
 
 
-    @Override
-    public Book readLatest() {
-        Connection conn = null;
+
+    public Book readLatest(Connection conn) {
+//        Connection conn = null;
         ResultSet rs = null;
         Book book = null;
         try {
-             conn = DBConnect.getInstance().getConnection();
+//             conn = DBConnect.getInstance().getConnection();
             Statement stmt = conn.createStatement();
-            String read = "SELECT * FROM Books;";
-            rs = stmt.executeQuery(read);
+            rs = stmt.executeQuery("SELECT * FROM Books ORDER BY book_id DESC LIMIT 1");
             rs.next();
             book = extractBookFromResultSet(rs);
         } catch (SQLException e) {
             LOGGER.error(e);
         } finally {
             DBConnect.close(rs);
-            DBConnect.close(conn);
+//            DBConnect.close(conn);
         }
         return book;
     }
 
-    @Override
-    public Book create(Book book){
-            Connection conn = null;
+    public Book create(Book book, Connection conn){
             PreparedStatement ps = null;
             Book returnBook = null;
         try {
-            conn = DBConnect.getInstance().getConnection();
-            ps = conn.prepareStatement("INSERT INTO Books VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            ps = conn.prepareStatement("INSERT INTO Books VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)");
 
-            if (book.getId()==null){
-                ps.setNull(1,Types.INTEGER);
-            } else {
-                ps.setInt(1, book.getId());
-            }
-            ps.setString(2, book.getTitle());
-            ps.setString(3, book.getDescription());
-            ps.setString(4, book.getIsbn10());
-            ps.setString(5, book.getIsbn13());
-            ps.setInt(6, book.getGenre().getId());
-            ps.setInt(7, book.getPublisher().getId());
-            ps.setInt(8, book.getAuthor().getId());
+            ps.setString(1, book.getTitle());
+            ps.setString(2, book.getDescription());
+            ps.setString(3, book.getIsbn10());
+            ps.setString(4, book.getIsbn13());
+            ps.setInt(5, book.getGenre().getId());
+            ps.setInt(6, book.getPublisher().getId());
+            ps.setInt(7, book.getAuthor().getId());
             int i = ps.executeUpdate();
+
             if(i == 1) {
-                returnBook = readLatest();
+                returnBook = readLatest(conn);
             }
         } catch (SQLException e) {
             LOGGER.error(e);
         } finally {
             DBConnect.close(ps);
-            DBConnect.close(conn);
         }
         return returnBook;
     }
 
 
 
-    @Override
-    public Book update(Book book) {
-        Connection conn = null;
+    public Book update(Book book, Connection conn) {
+//        Connection conn = null;
         PreparedStatement ps = null;
         Book returnBook = null;
         try {
-            conn = DBConnect.getInstance().getConnection();
+//            conn = DBConnect.getInstance().getConnection();
             ps = conn.prepareStatement("UPDATE Books " +
                     "SET book_title=?, description=?, isbn10=?, isbn13=?, genre_id=?, publisher_id=?, author_id=?" +
                     " WHERE book_id=?");
@@ -149,27 +136,25 @@ public class BookCRUD implements CRUD<Book> {
             ps.setInt(8, book.getId());
             int i = ps.executeUpdate();
             if(i == 1) {
-                returnBook = readLatest();
+                returnBook = get(book.getId(),conn);
             }
 
         } catch (SQLException e) {
             LOGGER.error(e);
         } finally {
             DBConnect.close(ps);
-            DBConnect.close(conn);
+//            DBConnect.close(conn);
         }
         return returnBook;
     }
 
-    @Override
-    public int delete(int id) {
-        Connection conn = null;
+
+    public int delete(int id, Connection conn) {
         PreparedStatement ps = null;
 
         int i = 0;
         try {
-            conn = DBConnect.getInstance().getConnection();
-            ps = conn.prepareStatement("DELETE FROM Books WHERE id=?");
+            ps = conn.prepareStatement("DELETE FROM Books WHERE book_id=?");
             ps.setInt(1, id);
             i = ps.executeUpdate();
 
@@ -177,7 +162,6 @@ public class BookCRUD implements CRUD<Book> {
             ex.printStackTrace();
         } finally {
             DBConnect.close(ps);
-            DBConnect.close(conn);
         }
 
 
@@ -189,21 +173,17 @@ public class BookCRUD implements CRUD<Book> {
      * @return book with id from book table
      *
      */
-    @Override
-    public Book get(int id){
-            Connection conn = null;
+    public Book get(int id, Connection conn){
             PreparedStatement ps = null;
             ResultSet rs = null;
             Book returnBook = null;
         try {
-            conn = DBConnect.getInstance().getConnection();
-//            Statement s = conn.createStatement();
-//            rs = s.executeQuery("SELECT * FROM books WHERE book_id=?");
-            ps = conn.prepareStatement("SELECT * FROM books WHERE book_id=?"); {
+            ps = conn.prepareStatement("SELECT * FROM Books WHERE book_id=?"); {
                 ps.setInt(1, id);
                 rs = ps.executeQuery();
                 rs.next();
                 returnBook = extractBookFromResultSet(rs);
+                System.out.println(returnBook);
 
             }
         } catch (SQLException e) {
@@ -211,8 +191,56 @@ public class BookCRUD implements CRUD<Book> {
         } finally {
             DBConnect.close(rs);
             DBConnect.close(ps);
-            DBConnect.close(conn);
         }
         return returnBook;
     }
+
+    @Override
+    public List<Book> readAll(){
+        Connection conn = DBConnect.getInstance().getConnection();
+        List<Book> books = readAll(conn);
+        DBConnect.close(conn);
+        return (books);
+    }
+
+    @Override
+    public Book readLatest(){
+        Connection conn = DBConnect.getInstance().getConnection();
+        Book book = readLatest(conn);
+        DBConnect.close(conn);
+        return (book);
+    }
+
+    @Override
+    public Book create(Book book){
+        Connection conn = DBConnect.getInstance().getConnection();
+        Book returnBook = create(book, conn);
+        DBConnect.close(conn);
+        return (returnBook);
+    }
+
+    @Override
+    public Book update(Book book){
+        Connection conn = DBConnect.getInstance().getConnection();
+        Book returnBook = update(book, conn);
+        DBConnect.close(conn);
+        return (returnBook);
+    }
+
+    @Override
+    public int delete(int id){
+        Connection conn = DBConnect.getInstance().getConnection();
+        int i = delete(id, conn);
+        DBConnect.close(conn);
+        return (i);
+    }
+
+    @Override
+    public Book get(int id){
+        Connection conn = DBConnect.getInstance().getConnection();
+        Book book = get(id, conn);
+        DBConnect.close(conn);
+        return (book);
+    }
 }
+
