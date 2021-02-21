@@ -86,12 +86,7 @@ public class BookDaoTest {
         assertEquals(1,deleteCheck);
     }
 
-    @After
-    public void after() throws SQLException{
-            conn.rollback();
-            conn.close();
 
-    }
 
     private void assertBooksEqual(Book book, Book bookCheck){
         assertEquals(book.getTitle(), bookCheck.getTitle());
@@ -102,6 +97,13 @@ public class BookDaoTest {
         assertEquals(book.getAuthor().getId(), bookCheck.getAuthor().getId());
         assertEquals(book.getPublisher().getId(), bookCheck.getPublisher().getId());
         assertEquals(book.getGenre().getId(), bookCheck.getGenre().getId());
+    }
+
+    @After
+    public void after() throws SQLException {
+        conn.rollback();
+        conn.close();
+
     }
 
 }
