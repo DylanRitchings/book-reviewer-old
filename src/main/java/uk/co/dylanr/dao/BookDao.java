@@ -12,9 +12,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @version 0.01
+ */
 public class BookDao implements CRUD<Book> {
     private static final Logger LOGGER = LogManager.getLogger();
 
+    /**
+     *
+     * @param Single book in result set
+     * @return Book object (Genre, publisher and author objects only contain ids)
+     *
+     */
     private Book extractBookFromResultSet(ResultSet rs) {
         try {
             Book book = new Book();
@@ -45,7 +54,7 @@ public class BookDao implements CRUD<Book> {
 
     /**
      *
-     * @return all books from books table
+     * @return all books from book table
      *
      */
     public List<Book> readAll(Connection conn) {
@@ -69,13 +78,14 @@ public class BookDao implements CRUD<Book> {
     }
 
 
-
+    /**
+     *
+     * @return most recent book sent to database
+     */
     public Book readLatest(Connection conn) {
-//        Connection conn = null;
         ResultSet rs = null;
         Book book = null;
         try {
-//             conn = DBConnect.getInstance().getConnection();
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery("SELECT * FROM Books ORDER BY book_id DESC LIMIT 1");
             rs.next();
@@ -89,6 +99,10 @@ public class BookDao implements CRUD<Book> {
         return book;
     }
 
+    /**
+     * Uploads book to database
+     * @return readLatest()
+     */
     public Book create(Book book, Connection conn){
             PreparedStatement ps = null;
             Book returnBook = null;
@@ -116,13 +130,14 @@ public class BookDao implements CRUD<Book> {
     }
 
 
-
+    /**
+     * Updates existing book in database
+     * @return readLatest()
+     */
     public Book update(Book book, Connection conn) {
-//        Connection conn = null;
         PreparedStatement ps = null;
         Book returnBook = null;
         try {
-//            conn = DBConnect.getInstance().getConnection();
             ps = conn.prepareStatement("UPDATE Books " +
                     "SET book_title=?, description=?, isbn10=?, isbn13=?, genre_id=?, publisher_id=?, author_id=?" +
                     " WHERE book_id=?");
@@ -143,12 +158,14 @@ public class BookDao implements CRUD<Book> {
             LOGGER.error(e);
         } finally {
             DBConnect.close(ps);
-//            DBConnect.close(conn);
         }
         return returnBook;
     }
 
-
+    /**
+     * Deletes book with id
+     * @return i=1 if executed correctly or i=0 if not
+     */
     public int delete(int id, Connection conn) {
         PreparedStatement ps = null;
 
@@ -195,6 +212,9 @@ public class BookDao implements CRUD<Book> {
         return returnBook;
     }
 
+    /**
+     * Creates connection if one has not be passed
+     */
     @Override
     public List<Book> readAll(){
         Connection conn = DBConnect.getInstance().getConnection();

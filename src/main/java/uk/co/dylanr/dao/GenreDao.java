@@ -4,6 +4,9 @@ import uk.co.dylanr.model.Genre;
 
 import java.util.List;
 
+/**
+ * @version 0.01
+ */
 public class GenreDao implements CRUD<Genre>{
     @Override
     public List<Genre> readAll() {

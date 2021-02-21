@@ -13,7 +13,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-
+/**
+ * @version 0.01
+ */
 public class AuthorDaoTest {
 
     final Author secondAuthor = new Author(1, "Name1", "Name2" , "Name3");
@@ -49,7 +51,7 @@ public class AuthorDaoTest {
     @Test
     public void testReadLatest(){
         io.create(author,conn);
-        Book authorCheck = io.readLatest(conn);
+        Author authorCheck = io.readLatest(conn);
         assertAuthorsEqual(author, authorCheck);
     }
 

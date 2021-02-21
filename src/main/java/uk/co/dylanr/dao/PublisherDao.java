@@ -3,7 +3,9 @@ package uk.co.dylanr.dao;
 import uk.co.dylanr.model.Publisher;
 
 import java.util.List;
-
+/**
+ * @version 0.01
+ */
 public class PublisherDao implements CRUD<Publisher>{
     @Override
     public List<Publisher> readAll() {

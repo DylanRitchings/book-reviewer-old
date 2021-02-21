@@ -15,7 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-
+/**
+ * @version 0.01
+ */
 public class BookDaoTest {
     private BookDao io = new BookDao();
     final Author author = new Author(1, "Name1", "Name2" , "Name3");

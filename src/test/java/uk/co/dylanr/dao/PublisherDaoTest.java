@@ -12,7 +12,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-
+/**
+ * @version 0.01
+ */
 public class PublisherDaoTest {
 
 

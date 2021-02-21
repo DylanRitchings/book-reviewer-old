@@ -3,7 +3,9 @@ package uk.co.dylanr.dao;
 import uk.co.dylanr.model.Author;
 
 import java.util.List;
-
+/**
+ * @version 0.01
+ */
 public class AuthorDao implements CRUD<Author>{
     @Override
     public List<Author> readAll() {

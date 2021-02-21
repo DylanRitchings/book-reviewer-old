@@ -6,6 +6,10 @@ import org.apache.logging.log4j.Logger;
 import java.io.FileReader;
 import java.sql.*;
 import java.util.Properties;
+
+/**
+ * @version 0.01
+ */
 public class DBConnect {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -40,9 +44,7 @@ public class DBConnect {
 //    private static String driver =
 
     /**
-     * Get a connection to database
-     *
-     * @return Connection object
+     * @return Connection to database
      */
     public Connection getConnection() {
         try {
@@ -56,16 +58,28 @@ public class DBConnect {
 
     private static DBConnect instance;
 
+    /**
+     * Creates instance of DBConnect
+     */
     public static DBConnect connect() {
         instance = new DBConnect();
         return instance;
     }
 
+    /**
+     * TODO
+     * @param properties
+     * @return
+     */
     public static DBConnect connect(String properties) {
         instance = new DBConnect(properties);
         return instance;
     }
 
+    /**
+     * TODO
+     * @return
+     */
     public static DBConnect getInstance() {
         if (instance == null) {
             instance = new DBConnect();
@@ -73,7 +87,9 @@ public class DBConnect {
         return instance;
     }
 
-
+    /**
+     * Closes connection to database
+     */
     public static void close(Connection conn){
         assert conn!=null;
         try {
@@ -83,6 +99,9 @@ public class DBConnect {
         }
     }
 
+    /**
+     * Closes result set
+     */
     public static void close(ResultSet rs){
         assert rs!=null;
         try {
@@ -92,6 +111,9 @@ public class DBConnect {
         }
     }
 
+    /**
+     * Closes prepared statement
+     */
     public static void close(PreparedStatement ps){
         assert ps!=null;
         try {
